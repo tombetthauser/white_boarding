@@ -1,5 +1,7 @@
 let prodarray = (inputarray) => {
-  let totalproduct = 1;
+  if (inputarray.length < 2) return undefined;
+  // if (inputarray.length === 1 && typeof inputarray[0] != `number`) return undefined;
+  let totalproduct;
   const returnarray = [];
 
   let zeroindex = null;
@@ -11,7 +13,7 @@ let prodarray = (inputarray) => {
       zeroindex = i;
       zerocount += 1;
     } else if (typeof element === `number`) {
-      totalproduct *= element;
+      totalproduct = totalproduct ? totalproduct * element : element;
     }
   }
 
@@ -21,7 +23,7 @@ let prodarray = (inputarray) => {
       returnarray.push(0);
     } else if (zerocount > 1) {
       returnarray.push(0);
-    } else if (typeof element === `number`) {
+    } else if (typeof element != `number`) {
       returnarray.push(totalproduct)
     } else {
       returnarray.push(totalproduct / element);
@@ -31,11 +33,11 @@ let prodarray = (inputarray) => {
   return returnarray;
 }
 
-console.log(prodArray([1, 2, 3]  )) // => [6, 3, 2]
-console.log(prodArray([2, 4, 0]  )) // => [0, 0, 8]
-console.log(prodArray([0, 3, 1, 2, 0])) // => [0, 0, 0, 0, 0]
-console.log(prodArray([-6, 2, -4])) // => [-8, 24, -12]
-console.log(prodArray([2])) // => undefined
-console.log(prodArray([`cat`])) // => undefined
-console.log(prodArray([])) // => undefined
-console.log(prodArray([1, 5, `cat`, 2, [1, 2, `dog`] ])) // => [10, 2, 10, 5, 10]
+console.log(prodarray([1, 2, 3])) // => [6, 3, 2]
+console.log(prodarray([2, 4, 0])) // => [0, 0, 8]
+console.log(prodarray([0, 3, 1, 2, 0])) // => [0, 0, 0, 0, 0]
+console.log(prodarray([-6, 2, -4])) // => [-8, 24, -12]
+console.log(prodarray([2])) // => undefined
+console.log(prodarray([`cat`])) // => undefined
+console.log(prodarray([])) // => undefined
+console.log(prodarray([1, 5, `cat`, 2, [1, 2, `dog`] ])) // => [10, 2, 10, 5, 10]
