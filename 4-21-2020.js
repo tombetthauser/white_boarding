@@ -4,6 +4,7 @@ let prodarray = (inputarray) => {
   let totalproduct;
   const returnarray = [];
 
+  const zeroHash = { index: null, count: 0 }
   let zeroindex = null;
   let zerocount = 0;
 
@@ -19,10 +20,12 @@ let prodarray = (inputarray) => {
 
   for (let i = 0; i < inputarray.length; i++) {
     let element = inputarray[i];
-    if (zerocount === 1 && i != zeroindex) {
+    if (zerocount > 1) {
       returnarray.push(0);
-    } else if (zerocount > 1) {
+    } else if (zerocount === 1 && i != zeroindex) {
       returnarray.push(0);
+    } else if (zerocount === 1 && i === zeroindex) {
+      returnarray.push(totalproduct);
     } else if (typeof element != `number`) {
       returnarray.push(totalproduct)
     } else {
